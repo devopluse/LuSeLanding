@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUSE | Sistemas administrativos a medida</title>
+  <meta
+    name="description"
+    content="LUSE desarrolla sistemas administrativos a medida para negocios, pymes y emprendedores que buscan ordenar procesos y trabajar mejor."
+  />
+  <style>
+    @font-face {
+      font-family: 'Genty';
+      src: url('assets/fonts/GentySans-Regular.ttf') format('ttf');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    :root {
+      --bg: #f5f7f4;
+      --surface: #ffffff;
+      --surface-soft: #f8fbf4;
+      --text: #1f1f23;
+      --muted: #60636d;
+      --line: #dfe5d8;
+      --primary: #93c83e;
+      --primary-dark: #6da126;
+      --secondary: #1f1f23;
+      --accent: #eef7dd;
+      --accent-strong: #dceeb4;
+      --shadow: 0 14px 34px rgba(23, 23, 28, 0.08);
+      --radius: 22px;
+      --max: 1140px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(147, 200, 62, 0.10), transparent 26%),
+        linear-gradient(180deg, #f7f9f5 0%, #f3f5f1 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(247, 249, 245, 0.9);
+      border-bottom: 1px solid rgba(223, 229, 216, 0.9);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 78px;
+    }
+
+    h1,
+    h2,
+    .brand,
+    .btn-primary {
+      font-family: 'Genty', Arial, Helvetica, sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      letter-spacing: 0.03em;
+      background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #fff;
+      box-shadow: 0 10px 18px rgba(147, 200, 62, 0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(0.98);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--secondary);
+      border-color: var(--line);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-soft);
+    }
+
+    .hero {
+      padding: 88px 0 76px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      position: relative;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary-dark);
+      background: var(--accent);
+      border: 1px solid #d6e8ab;
+      border-radius: 999px;
+      padding: 8px 12px;
+    }
+
+    .hero h1 {
+      font-weight: normal;
+      margin: 0 0 18px;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1.03;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 650px;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .hero-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .hero-points span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .hero-visual {
+      position: relative;
+      background: linear-gradient(180deg, #ffffff 0%, #f6f8f4 100%);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      min-height: 470px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      width: 440px;
+      height: 440px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(147, 200, 62, 0.22) 0%, rgba(147, 200, 62, 0) 70%);
+      top: -110px;
+      right: -80px;
+    }
+
+    .hero-logo-wrap {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 380px);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .hero-logo {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.12));
+    }
+
+    .hero-note {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .hero-note strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .hero-note p {
+      font-size: 0.96rem;
+      max-width: none;
+    }
+
+    section {
+      padding: 26px 0 74px;
+    }
+
+    .section-head {
+      margin-bottom: 26px;
+      max-width: 720px;
+    }
+
+    h2 {
+      font-weight: normal;
+      margin: 0 0 12px;
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p,
+    .about-text,
+    .cta-box p,
+    footer p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .grid-3,
+    .grid-4,
+    .steps {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card.featured {
+      background: linear-gradient(180deg, #fbfdf8 0%, #f4f9ea 100%);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.08rem;
+    }
+
+    .card p,
+    .card li {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .icon-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: var(--accent);
+      color: var(--primary-dark);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      border: 1px solid #d9e8b8;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--secondary);
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .highlight-band {
+      background: linear-gradient(180deg, #edf6dc 0%, #f8fbf3 100%);
+      border-top: 1px solid #dce7c7;
+      border-bottom: 1px solid #dce7c7;
+    }
+
+    .about-box {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .about-highlight {
+      background: linear-gradient(180deg, #232329 0%, #17171b 100%);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-highlight::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      right: -60px;
+      bottom: -60px;
+      background: rgba(147, 200, 62, 0.18);
+    }
+
+    .about-highlight p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .cta {
+      padding-bottom: 88px;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, #ffffff 0%, #f1f7e6 100%);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 38px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-box::before {
+      content: "";
+      position: absolute;
+      inset: auto auto -60px -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(147, 200, 62, 0.16);
+    }
+
+    .cta-box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-box h2 {
+      max-width: 760px;
+      margin: 0 auto 12px;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0 36px;
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-box,
+      .grid-4,
+      .grid-3,
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-visual {
+        min-height: 420px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .hero {
+        padding-top: 52px;
+      }
+
+      .hero-grid,
+      .about-box,
+      .grid-4,
+      .grid-3,
+      .steps,
+      .footer-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: auto;
+        padding: 22px;
+      }
+
+      .hero-logo-wrap {
+        width: min(100%, 290px);
+      }
+
+      .cta-box {
+        text-align: left;
+      }
+
+      .cta-box h2 {
+        margin-left: 0;
+      }
+
+      .cta-actions {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a href="#inicio" class="brand">
+        <img src="assets/images/LogoSinFondo.png" alt="LUSE" class="brand-mark" />
+        <span>LUSE</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#clientes">A quién ayudamos</a>
+        <a href="#proceso">Cómo trabajamos</a>
+        <a href="#contacto" class="btn btn-primary">Contactar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Sistemas administrativos a medida</span>
+          <h1>Soluciones simples para ordenar la gestión de tu negocio</h1>
+          <p>
+            En LUSE desarrollamos sistemas administrativos a medida para comercios,
+            pymes y emprendedores que necesitan reducir tareas manuales, ordenar
+            información y trabajar con procesos más claros.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/5492616588568" target="_blank" rel="noopener noreferrer">
+              Consultar por WhatsApp
+            </a>
+            <a class="btn btn-secondary" href="#servicios">Ver servicios</a>
+          </div>
+
+          <div class="hero-points">
+            <span>Desarrollo a medida</span>
+            <span>Automatización</span>
+            <span>Soporte práctico</span>
+          </div>
+        </div>
+
+        <aside class="hero-visual">
+          <div class="hero-logo-wrap">
+            <img src="assets/images/LogoSinFondo.png" alt="Logo LUSE Soft & Tech" class="hero-logo" />
+            <div class="hero-note">
+              <strong>Soluciones pensadas para la operación real</strong>
+              <p>
+                El objetivo no es sumar complejidad, sino ayudarte a trabajar con más orden,
+                control y menos tareas repetitivas.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Servicios</span>
+          <h2>Qué ofrece LUSE</h2>
+          <p>
+            Servicios orientados a resolver necesidades reales de gestión, con un enfoque
+            práctico y sin complejidad innecesaria.
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <article class="card featured">
+            <div class="icon-badge">01</div>
+            <h3>Sistemas administrativos a medida</h3>
+            <p>
+              Desarrollo de soluciones adaptadas a la forma de trabajo de cada negocio.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon-badge">02</div>
+            <h3>Automatización de procesos</h3>
+            <p>
+              Reducción de tareas manuales para ahorrar tiempo y mejorar el control.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon-badge">03</div>
+            <h3>Mejora de sistemas existentes</h3>
+            <p>
+              Ajustes, nuevas funciones y optimizaciones sobre herramientas que ya usás.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon-badge">04</div>
+            <h3>Integraciones y soporte técnico</h3>
+            <p>
+              Conexión entre procesos, datos y herramientas para un trabajo más ordenado.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="clientes" class="highlight-band">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">A quién ayudo</span>
+          <h2>Negocios que necesitan orden, control y una solución práctica</h2>
+          <p>
+            LUSE está pensado para quienes quieren mejorar su gestión sin depender de procesos improvisados.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>Comercios</h3>
+            <p>
+              Para ordenar tareas administrativas, registrar operaciones y tener mejor seguimiento.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Pymes</h3>
+            <p>
+              Para profesionalizar procesos internos y trabajar con información más clara.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Emprendedores</h3>
+            <p>
+              Para dejar atrás planillas dispersas y empezar a trabajar con una base más sólida.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="beneficios">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Beneficios</span>
+          <h2>El foco no está en la tecnología, sino en el resultado</h2>
+        </div>
+
+        <div class="grid-4">
+          <article class="card">
+            <h3>Menos tareas manuales</h3>
+            <p>Más tiempo para enfocarte en lo importante del negocio.</p>
+          </article>
+
+          <article class="card">
+            <h3>Mejor control</h3>
+            <p>Información más ordenada y fácil de consultar.</p>
+          </article>
+
+          <article class="card">
+            <h3>Procesos más claros</h3>
+            <p>Menos improvisación y más consistencia en el trabajo diario.</p>
+          </article>
+
+          <article class="card">
+            <h3>Solución adaptada</h3>
+            <p>No se fuerza tu negocio a un sistema genérico que no encaja.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="proceso">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Cómo trabajo</span>
+          <h2>Un proceso simple y directo</h2>
+        </div>
+
+        <div class="steps">
+          <article class="card">
+            <div class="step-number">1</div>
+            <h3>Escuchamos tu necesidad</h3>
+            <p>Comprendemos qué problema querés resolver y cómo trabajás hoy.</p>
+          </article>
+
+          <article class="card">
+            <div class="step-number">2</div>
+            <h3>Analizamos el proceso actual</h3>
+            <p>Revisamos dónde hay demoras, errores o tareas repetitivas.</p>
+          </article>
+
+          <article class="card">
+            <div class="step-number">3</div>
+            <h3>Proponemos una solución</h3>
+            <p>Definimos una alternativa simple, clara y adecuada para tu caso.</p>
+          </article>
+
+          <article class="card">
+            <div class="step-number">4</div>
+            <h3>Desarrollamos e implementamos</h3>
+            <p>Llevamos la solución a la práctica con foco en utilidad real.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre-luse">
+      <div class="container about-box">
+        <div class="card">
+          <div class="section-head" style="margin-bottom: 0;">
+            <span class="eyebrow">Sobre LUSE</span>
+            <h2>Desarrollo orientado a la gestión y a la realidad del negocio</h2>
+          </div>
+          <p class="about-text">
+            En LUSE ofrecemos servicios de desarrollo de sistemas administrativos a medida,
+            con foco en crear herramientas prácticas, claras y útiles para el trabajo diario.
+            El objetivo es resolver necesidades concretas de gestión, simplificar procesos y
+            acompañar el crecimiento operativo de cada cliente.
+          </p>
+        </div>
+
+        <div class="about-highlight">
+          <p>
+            Una buena solución administrativa no necesita ser compleja. Necesita funcionar,
+            adaptarse a tu forma de trabajar y ayudarte a tomar mejores decisiones.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contacto">
+      <div class="container">
+        <div class="cta-box">
+          <span class="eyebrow">Contacto</span>
+          <h2>¿Tenés un proceso manual o desordenado y querés mejorarlo?</h2>
+          <p>
+            Escribinos y revisamos tu caso para encontrar una solución administrativa a medida.
+          </p>
+
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="https://wa.me/5492616588568" target="_blank" rel="noopener noreferrer">
+              Hablar por WhatsApp
+            </a>
+            <a class="btn btn-secondary" href="mailto:devopluse@gmail.com">
+              Enviar email
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div>
+        <div class="brand">
+          <img src="assets/images/LogoSinFondo.png" alt="LUSE" class="brand-mark" />
+          <span>LUSE</span>
+        </div>
+        <p>Sistemas administrativos a medida.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="mailto:devopluse@gmail.com">devopluse@gmail.com</a>
+        <a href="https://wa.me/5492616588568" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
